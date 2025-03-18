@@ -3,9 +3,8 @@ module Nevaeh
     
     class Lte5gVpnGenerator < Rails::Generators::NamedBase
       source_root File.expand_path("templates", __dir__)
-  
-  
-      def install_dependencies
+        
+        def install_dependencies
             say "Installing dependencies...", :green
             run "apt update && apt install -y openvpn wireguard mysql-server postgresql mongodb"
           end
@@ -108,6 +107,19 @@ module Nevaeh
               end
             RUBY
           end
+          
+          def run_all_tasks
+            invoke :install_dependencies
+            invoke :setup_openvpn
+            invoke :setup_wireguard
+            invoke :setup_lte_5g
+            invoke :setup_databases
+            invoke :create_settings_migration
+            invoke :generate_services
+            invoke :setup_dashboard
+            invoke :setup_monitoring
+            invoke :setup_api_endpoints
+            end
   
     end
     

@@ -29,6 +29,11 @@ module Nevaeh
         gem "sendgrid-ruby", "~> 6.7.1" # Example for SendGrid; replace with your server if different
         run "bundle install"
       end
+      
+      def run_all_tasks
+        invoke :create_email_config_files
+        invoke :install_email_dependencies
+      end
     end
     
     
