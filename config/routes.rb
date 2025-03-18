@@ -11,4 +11,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  
+  #route to  the email service
+  post 'send_test_email', to: 'mail#send_test_email'
 end
